@@ -7,8 +7,8 @@ class PersonEntity extends Equatable {
   final String species;
   final String type;
   final String gender;
-  final LocationEntity origin;
-  final LocationEntity location;
+  final LocationEntity? origin;
+  final LocationEntity? location;
   final String image;
   final List<String> episode;
   final DateTime created;
