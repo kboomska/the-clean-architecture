@@ -6,6 +6,7 @@ import 'package:rick_and_morty/feature/presentation/bloc/person_list_cubit/perso
 import 'package:rick_and_morty/feature/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:rick_and_morty/feature/presentation/pages/person_screen.dart';
 import 'package:rick_and_morty/locator_service.dart' as di;
+import 'package:rick_and_morty/common/app_colors.dart';
 import 'package:rick_and_morty/locator_service.dart';
 
 void main() async {
@@ -22,15 +23,18 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PersonListCubit>(
-            create: (context) => sl<PersonListCubit>()),
+          create: (context) => sl<PersonListCubit>()..loadPerson(),
+        ),
         BlocProvider<PersonSearchBloc>(
-            create: (context) => sl<PersonSearchBloc>()),
+          create: (context) => sl<PersonSearchBloc>(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData.dark().copyWith(
-          backgroundColor: Colors.black,
-          scaffoldBackgroundColor: Colors.grey,
+          backgroundColor: AppColors.mainBackground,
+          scaffoldBackgroundColor: AppColors.mainBackground,
         ),
+        debugShowCheckedModeBanner: false,
         home: const HomePage(),
       ),
     );
