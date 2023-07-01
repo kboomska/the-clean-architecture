@@ -20,6 +20,16 @@ class PersonsList extends StatelessWidget {
           return _loadingIndicator();
         } else if (state is PersonLoaded) {
           persons = state.personsList;
+        } else if (state is PersonError) {
+          return Center(
+            child: Text(
+              state.message,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+              ),
+            ),
+          );
         }
         return ListView.separated(
           itemCount: persons.length,

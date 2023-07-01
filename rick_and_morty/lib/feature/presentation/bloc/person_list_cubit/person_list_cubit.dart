@@ -26,15 +26,18 @@ class PersonListCubit extends Cubit<PersonState> {
 
     final failureOrPerson = await getAllPersons(PagePersonParams(page: page));
 
-    failureOrPerson.fold(
-        (error) => PersonError(
-              message: _mapFailureToMessage(error),
-            ), (character) {
-      page++;
-      final persons = (state as PersonLoading).oldPersonsList;
-      persons.addAll(character);
-      emit(PersonLoaded(persons));
-    });
+    final newState = failureOrPerson.fold(
+      (error) {
+        return PersonError(message: _mapFailureToMessage(error));
+      },
+      (character) {
+        page++;
+        final persons = (state as PersonLoading).oldPersonsList;
+        persons.addAll(character);
+        return PersonLoaded(persons);
+      },
+    );
+    emit(newState);
   }
 
   String _mapFailureToMessage(Failure failure) {
