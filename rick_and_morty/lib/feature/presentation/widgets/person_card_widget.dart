@@ -82,7 +82,7 @@ class PersonCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    person.location?.name ?? '',
+                    person.location?.name ?? 'unknown',
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -98,7 +98,7 @@ class PersonCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    person.origin?.name ?? '',
+                    person.origin?.name ?? 'unknown',
                     style: const TextStyle(
                       color: Colors.white,
                     ),

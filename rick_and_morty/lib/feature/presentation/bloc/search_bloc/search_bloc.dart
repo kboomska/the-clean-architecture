@@ -11,9 +11,9 @@ class PersonSearchBloc extends Bloc<PersonSearchEvent, PersonSearchState> {
   PersonSearchBloc({
     required this.searchPerson,
   }) : super(PersonEmpty()) {
-    on<PersonSearchEvent>((event, emit) {
+    on<PersonSearchEvent>((event, emit) async {
       if (event is SearchPersons) {
-        _onSearchPerson(event, emit);
+        await _onSearchPerson(event, emit);
       }
     });
   }
